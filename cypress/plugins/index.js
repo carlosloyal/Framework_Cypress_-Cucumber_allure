@@ -12,11 +12,19 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
+ {Cypress.PluginConfig}
+ 
+
+
+import cucumber from 'cypress-cucumber-preprocessor'
+on('file:preprocessor', cucumber())
+
+export default (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  module.exports = (on, config) => {
+    on('file:preprocessor', cucumber()) // Once the program be load this configure is going to interpret all Cucumber Parts ex: features.
+    }
+      
+
 }
